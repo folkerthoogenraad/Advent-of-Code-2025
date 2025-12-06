@@ -13,7 +13,7 @@ public class Day03
             
             long jolt = ToInt(line[firstIndex]) * 10 + ToInt(line[secondIndex]);
             
-            Console.WriteLine(line + " has a jolt of " + jolt);
+            // Console.WriteLine(line + " has a jolt of " + jolt);
             
             totalJolt += jolt;
         }

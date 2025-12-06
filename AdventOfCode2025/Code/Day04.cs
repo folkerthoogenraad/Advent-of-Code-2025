@@ -9,7 +9,6 @@ public class Day04
         long total = 0;
         
         var grid = Grid<char>.Parse(input, c => c);
-        var writeGrid = grid.Clone();
         
         foreach(var target in grid.AllPoints)
         {
@@ -24,15 +23,8 @@ public class Day04
             if(adjecentCount < 4)
             {
                 total += 1;
-                writeGrid.Set(target, 'x');
-            }
-            else
-            {
-                writeGrid.Set(target, '+');
             }
         }
-        
-        writeGrid.Print();
         
         return total;
     }
@@ -69,7 +61,7 @@ public class Day04
         }
         while(removedCount > 0);
         
-        grid.Print();
+        // grid.Print();
         
         return total;
     }

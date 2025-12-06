@@ -1,6 +1,18 @@
 ﻿using AdventOfCode2025.Code;
 using AdventOfCode2025.Util;
 
+// Generates the input and example files automatically :)
+// Just convenient for filling them out that you don't have to create them
+// but you still have to fill them, so it doesn't really help all that much.
+for(int i = 1; i <= 25; i++)
+{
+    var regular = $"input_2025_{i:d2}.txt";
+    var example = $"input_2025_{i:d2}_example.txt";
+    
+    if(!File.Exists(regular)) { File.WriteAllText(regular, ""); }
+    if(!File.Exists(example)) { File.WriteAllText(example, ""); }
+}
+
 Console.WriteLine("Day01 A : " + new Day01().RunA(File.ReadAllText("input_2025_01.txt")));
 Console.WriteLine("Day01 B : " + new Day01().RunB(File.ReadAllText("input_2025_01.txt")));
 Console.WriteLine("Day02 A : " + new Day02().RunA(File.ReadAllText("input_2025_02.txt")));
