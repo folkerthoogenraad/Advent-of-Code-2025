@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2025.Util;
+﻿using System.Numerics;
+
+namespace AdventOfCode2025.Util;
 
 public class Grid<T>
 {
@@ -22,6 +24,21 @@ public class Grid<T>
 
         return grid;
     }
+    
+    public Grid<TOther> Map<TOther>(Func<Point, T, TOther> converter)
+    {
+        var grid = new Grid<TOther>(Width, Height);
+        
+        for(int x = 0; x < Width; x++) {
+            for(int y = 0; y < Height; y++){
+                var point = new Point(x, y);
+                
+                grid.Set(point, converter(point, Get(point)));
+            }
+        }
+        
+        return grid;
+    }
 
     public void Set(int x, int y, T value){
         Data[IndexOf(x, y)] = value;
@@ -34,13 +51,25 @@ public class Grid<T>
         }
     }
 
-    public void Foreach(Action<Point, T> action){
-
+    public void Foreach(Action<Point, T> action)
+    {
         for(int x = 0; x < Width; x++) {
             for(int y = 0; y < Height; y++){
                 action(new Point(x, y), Get(x, y));
             }
         }
+    }
+    
+    public Point FindRequired(Func<T, bool> predicate)
+    {
+        var point = Find(predicate);
+        
+        if(!point.HasValue)
+        {
+            throw new Exception("Point couln't be found ");
+        }
+        
+        return point.Value;
     }
 
     public Point? Find(Func<T, bool> predicate)
@@ -162,12 +191,34 @@ public static class GridExtensions {
             Console.WriteLine();
         }
     }
-    public static void Print<T>(this Grid<T> grid, Func<T, char> converter){
+    
+    public static void Print<T>(this Grid<T> grid, Func<T, char> converter)
+    {
         for(int y = 0; y < grid.Height; y++){
             for(int x = 0; x < grid.Width; x++){
                 Console.Write(converter(grid.Get(x, y)));
             }
             Console.WriteLine();
+        }
+    }
+    
+    public static void Add<T>(this Grid<T> grid, Point p, T value) 
+        where T :  INumber<T> 
+    {
+        var current = grid.Get(p);
+                
+        grid.Set(p, current + value);
+    }
+    
+    
+    public static IEnumerable<(Point Point, T Value)> GetRow<T>(this Grid<T> grid, int row) 
+        where T :  INumber<T> 
+    {
+        for(int i = 0; i < grid.Width; i++)
+        {
+            var point = new Point(i, row);
+            
+            yield return (point, grid.Get(point));
         }
     }
 }
