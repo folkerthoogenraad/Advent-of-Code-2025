@@ -26,4 +26,9 @@ for(int i = 1; i <= 25; i++)
 // Console.WriteLine("Day06 A : " + new Day06().RunA(File.ReadAllText("input_2025_06.txt")));
 // Console.WriteLine("Day06 B : " + new Day06().RunB(File.ReadAllText("input_2025_06.txt")));
 // Console.WriteLine("Day07 A : " + new Day07().RunA(File.ReadAllText("input_2025_07.txt")));
-Console.WriteLine("Day07 B : " + new Day07().RunB(File.ReadAllText("input_2025_07.txt")));
+// Console.WriteLine("Day07 B : " + new Day07().RunB(File.ReadAllText("input_2025_07.txt")));
+// Console.WriteLine("Day08 A : " + new Day08().RunA(File.ReadAllText("input_2025_08.txt")));
+// Console.WriteLine("Day08 B : " + new Day08().RunB(File.ReadAllText("input_2025_08.txt")));
+
+// Console.WriteLine("Day09 A : " + new Day09().RunA(File.ReadAllText("input_2025_09.txt")));
+// Console.WriteLine("Day09 B : " + new Day09().RunB(File.ReadAllText("input_2025_09.txt")));

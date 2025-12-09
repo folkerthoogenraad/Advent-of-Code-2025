@@ -52,6 +52,22 @@ public record struct Point(int X, int Y)
         }
     }
     
+    public static IEnumerable<Point> Rectangle(Point start, Point end) // Returns inclusive the endpoint
+    {
+        int x1 = Math.Min(start.X, end.X);
+        int x2 = Math.Max(start.X, end.X);
+        int y1 = Math.Min(start.Y, end.Y);
+        int y2 = Math.Max(start.Y, end.Y);
+     
+        for(int x = x1; x <= x2; x += 1)
+        {
+            for(int y = y1; y <= y2; y += 1)
+            {
+                yield return new Point(x, y);
+            }
+        }
+    }
+    
     public static IEnumerable<Point> Rectangle(int x, int y, int width, int height)
     {
         return Rectangle(new Point(x, y), width, height);

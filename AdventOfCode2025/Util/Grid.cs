@@ -43,6 +43,13 @@ public class Grid<T>
     public void Set(int x, int y, T value){
         Data[IndexOf(x, y)] = value;
     }
+    
+    public void Fill(T value){
+        foreach (var point in AllPoints)
+        {
+            Set(point, value);
+        }
+    }
 
     public void Fill(IEnumerable<Point> points, T value){
         foreach (var point in points)
